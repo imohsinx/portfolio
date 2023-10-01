@@ -219,7 +219,6 @@ export default function ProfileDialog({ user, open, setOpen }) {
           Profile Photo
         </Box>
         <TextField
-          autoFocus
           margin="dense"
           id="name"
           label="Full Name"
@@ -233,7 +232,6 @@ export default function ProfileDialog({ user, open, setOpen }) {
           }}
         />
         <TextField
-          autoFocus
           margin="dense"
           id="phone_number"
           label="Phone Number"
@@ -247,7 +245,6 @@ export default function ProfileDialog({ user, open, setOpen }) {
           }}
         />
         <TextField
-          autoFocus
           margin="dense"
           id="name"
           label="Address"
