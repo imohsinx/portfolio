@@ -305,7 +305,47 @@ const ContactSection = () => {
             </form>
           </CardContent>
         </Card>
-        {/* rest of your code */}
+        <Box mt={4}>
+          <Card>
+            <CardContent>
+              <Typography
+                variant="h5"
+                component="div"
+                gutterBottom
+                textAlign="center"
+              >
+                Social Links
+              </Typography>
+              <Divider />
+              <Box
+                display="flex"
+                justifyContent="center"
+                style={{
+                  widht: "100%",
+                  marginTop: "20px",
+                  marginBottom: "-10px",
+                }}
+              >
+                <IconButton
+                  href="https://github.com/imohsinx"
+                  target="_blank"
+                  rel="noopener"
+                  style={{ color: "black" }}
+                >
+                  <GitHub />
+                </IconButton>
+                <IconButton
+                  href="https://www.linkedin.com/in/mohsin-memon-98256924a/"
+                  target="_blank"
+                  rel="noopener"
+                  color="primary"
+                >
+                  <LinkedIn />
+                </IconButton>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
       </Container>
     </Box>
   );
