@@ -12,14 +12,6 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
             path="/"
             element={
               <RedirectToHome>
@@ -33,6 +25,14 @@ function App() {
               <RedirectToHome>
                 <SignUP />
               </RedirectToHome>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
             }
           />
         </Routes>
