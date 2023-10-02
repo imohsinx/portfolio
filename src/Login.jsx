@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   Chip,
+  DialogTitle,
   Divider,
   FormControl,
   IconButton,
@@ -12,15 +13,20 @@ import {
   OutlinedInput,
   Paper,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "./UserAuthContext";
 import {
   Google,
+  Lock,
+  LockOpenOutlined,
   LoginOutlined,
+  LoginRounded,
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
+import { useSnackbar } from "notistack";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -28,22 +34,39 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const matchesSmallDevice = useMediaQuery("(max-width: 800px)");
 
   const { logIn, googleSignIn } = useUserAuth();
+  console.log("is small device :", matchesSmallDevice);
 
   const handleSubmit = async () => {
-    // Check if email follows the standard email format
+    // Check if email is not empty and follows the standard email format
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (email && !emailRegex.test(email)) {
-      setError("Email should be in the format 'example@example.com'");
+    if (!email || (email && !emailRegex.test(email))) {
+      setError(
+        "Email is required and should be in the format 'example@example.com'"
+      );
+      enqueueSnackbar(
+        "Email is required and should be in the format 'example@example.com'",
+        {
+          variant: "error",
+        }
+      );
       return;
     }
 
-    // Check if password is at least 8 characters long and contains at least one number, one lowercase letter, and one uppercase letter
+    // Check if password is not empty, at least 8 characters long and contains at least one number, one lowercase letter, and one uppercase letter
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    if (password && !passwordRegex.test(password)) {
+    if (!password || (password && !passwordRegex.test(password))) {
       setError(
-        "Password should be at least 8 characters long and contain at least one number, one lowercase letter, and one uppercase letter"
+        "Password is required, should be at least 8 characters long and contain at least one number, one lowercase letter, and one uppercase letter"
+      );
+      enqueueSnackbar(
+        "Password is required, should be at least 8 characters long and contain at least one number, one lowercase letter, and one uppercase letter",
+        {
+          variant: "error",
+        }
       );
       return;
     }
@@ -74,8 +97,22 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <Paper className="login_form">
+    <div
+      className="container"
+      style={
+        matchesSmallDevice
+          ? { alignItems: "center", justifyContent: "flex-start" }
+          : {}
+      }
+    >
+      <Paper
+        className="login_form"
+        style={
+          matchesSmallDevice
+            ? { boxShadow: "none", maxWidth: "300px" }
+            : { maxWidth: "300px" }
+        }
+      >
         {/* <img src={logo} alt="Logo" class="logo" /> */}
         {error ? (
           <Alert severity="error" style={{ marginBottom: "30px" }}>
@@ -86,8 +123,14 @@ export default function Login() {
         )}
 
         <Divider style={{ marginBottom: "30px" }}>
-          <Chip label="LOGIN" variant="outlined" />
+          <Chip
+            icon={<LockOpenOutlined />}
+            label="LOGIN"
+            variant="outlined"
+            style={{ padding: "10px" }}
+          />
         </Divider>
+
         <TextField
           variant="outlined"
           style={{ marginBottom: "10px" }}

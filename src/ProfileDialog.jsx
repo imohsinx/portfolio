@@ -203,7 +203,6 @@ export default function ProfileDialog({ user, open, setOpen }) {
                   alt={name}
                   src={photoURL}
                   style={{
-                    backgroundColor: "forestgreen",
                     border: "1px solid #ddd",
                     fontSize: "64px",
                     height: "120px",
@@ -211,9 +210,7 @@ export default function ProfileDialog({ user, open, setOpen }) {
                   }}
                 />
               ) : (
-                <AccountCircle
-                  style={{ fontSize: "80px", backgroundColor: "grey" }}
-                />
+                <AccountCircle style={{ fontSize: "80px", color: "grey" }} />
               )}
             </IconButton>
           </label>
@@ -233,7 +230,7 @@ export default function ProfileDialog({ user, open, setOpen }) {
             marginBottom: "20px",
           }}
         >
-          Profile Photo
+          Change Profile Photo
         </Box>
         <TextField
           margin="dense"
