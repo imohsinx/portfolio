@@ -55,7 +55,7 @@ const EducationSection = () => {
 
       <Container>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <Paper elevation={3} p={3} style={{ padding: "30px" }}>
               <Typography variant="h5" component="div" gutterBottom>
                 Bachelors in Computer Applications
@@ -76,17 +76,14 @@ const EducationSection = () => {
               >
                 The Bachelor of Computer Applications (BCA) is an undergraduate
                 program that provides a strong foundation in computer science
-                and applications. It covers various aspects of computer science,
-                including programming languages, algorithms, data structures,
-                database management, software development, and computer
-                networks.
+                and applications.
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Course Duration : 2020 - 2023
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <Paper elevation={3} p={3} style={{ padding: "30px" }}>
               <Typography variant="h5" component="div" gutterBottom>
                 Masters in Computer Applications
@@ -107,9 +104,7 @@ const EducationSection = () => {
               >
                 The Master of Computer Applications (MCA) is a postgraduate
                 program that focuses on advanced concepts in computer science,
-                including software development, database management, computer
-                networks, and more. It equips students with both theoretical
-                knowledge and practical skills.
+                including software development and more .
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Course Duration : 2023 - 2025
