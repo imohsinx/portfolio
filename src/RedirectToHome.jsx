@@ -11,7 +11,7 @@ const RedirectToHome = ({ children }) => {
       // Navigate to some other page
       setTimeout(() => {
         navigate("/home");
-      }, 500);
+      }, 1500);
     }
   }, [user]);
 
