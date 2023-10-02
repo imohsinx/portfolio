@@ -32,11 +32,19 @@ export function UserAuthContextProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       console.log("Auth", currentuser);
       setUser(currentuser);
+      localStorage.setItem("authUser", JSON.stringify(currentuser));
     });
 
     return () => {
       unsubscribe();
     };
+  }, []);
+
+  useEffect(() => {
+    const authUser = JSON.parse(localStorage.getItem("authUser"));
+    if (authUser) {
+      setUser(authUser);
+    }
   }, []);
 
   return (
