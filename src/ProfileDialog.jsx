@@ -183,7 +183,7 @@ export default function ProfileDialog({ user, open, setOpen }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleCancel}>
       {loading ? <LinearProgress /> : ""}
       <DialogTitle>User Profile</DialogTitle>
       <Divider />
