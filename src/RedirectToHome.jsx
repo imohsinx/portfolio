@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "./UserAuthContext";
 
@@ -8,12 +8,11 @@ const RedirectToHome = ({ children }) => {
 
   useEffect(() => {
     if (user !== null) {
-      // Navigate to some other page
       setTimeout(() => {
         navigate("/home");
       }, 1500);
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return children;
 };
