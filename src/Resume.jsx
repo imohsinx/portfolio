@@ -37,14 +37,18 @@ const EducationSection = () => {
       <Divider>
         <Chip
           label="Education"
-          variant="outlined"
+          variant="contained"
           style={{
             marginBottom: "50px",
             marginTop: "30px",
             fontSize: "34px",
             width: "100%",
             heigh: "100%",
-            padding: "40px",
+            padding: "30px",
+            backgroundColor: "#ddd",
+            letterSpacing: "0.5px",
+            color: "#000",
+            border: "1px dashed grey",
           }}
         />
       </Divider>
@@ -136,14 +140,18 @@ const SkillsSection = () => {
       <Divider>
         <Chip
           label="Skills"
-          variant="outlined"
+          variant="contained"
           style={{
             marginBottom: "50px",
             marginTop: "30px",
             fontSize: "34px",
             width: "100%",
             heigh: "100%",
-            padding: "40px",
+            padding: "30px",
+            backgroundColor: "#ddd",
+            color: "#000",
+            border: "1px dashed grey",
+            letterSpacing: "0.75px",
           }}
         />
       </Divider>
@@ -262,14 +270,18 @@ const ContactSection = () => {
       <Divider>
         <Chip
           label="Contact Form"
-          variant="outlined"
+          variant="contained"
           style={{
             marginBottom: "50px",
             marginTop: "30px",
             fontSize: "34px",
             width: "100%",
             heigh: "100%",
-            padding: "40px",
+            padding: "30px",
+            backgroundColor: "#ddd",
+            color: "#000",
+            letterSpacing: "0.5px",
+            border: "1px dashed grey",
           }}
         />
       </Divider>
@@ -394,14 +406,18 @@ const ProjectsSection = () => {
       <Divider>
         <Chip
           label="Projects"
-          variant="outlined"
+          variant="contained"
           style={{
             marginBottom: "50px",
             marginTop: "30px",
             fontSize: "34px",
             width: "100%",
             heigh: "100%",
-            padding: "40px",
+            padding: "30px",
+            backgroundColor: "#ddd",
+            color: "#000",
+            border: "1px dashed grey",
+            letterSpacing: "0.75px",
           }}
         />
       </Divider>
