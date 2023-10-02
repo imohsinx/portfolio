@@ -6,6 +6,7 @@
     justify-content: center; 
     align-items: center;
     font-size: 16px;
+    overflow: hidden;
 }
 
 
@@ -15,4 +16,16 @@
     flex-direction: column;
     padding: 30px;
     min-width: 400px;
+}
+
+@media only screen and  (max-width: 800px) {
+    .login_form{
+        min-width: 60vw;
+    }
+}
+
+@media only screen and  (max-width: 600px) {
+    .login_form{
+        min-width: 80vw;
+    }
 }
