@@ -55,7 +55,7 @@ const EducationSection = () => {
                 gutterBottom
                 style={{ marginBottom: "30px" }}
               >
-                K. P. B. Hinduja College of Commerce
+                K. P. B. Hinduja College
               </Typography>
               <Typography
                 variant="body1"
