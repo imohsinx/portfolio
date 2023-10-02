@@ -110,7 +110,7 @@ export default function Login() {
         className="login_form"
         style={
           matchesSmallDevice
-            ? { boxShadow: "none", maxWidth: "300px" }
+            ? { boxShadow: "none", maxWidth: "80vw" }
             : { maxWidth: "300px" }
         }
       >

@@ -462,7 +462,7 @@ const ProjectsSection = () => {
         </Grid>
         <Alert severity="info">
           I have various other projects aswell , but i need to sort them out and
-          fix some bugs on them , they are not presentable at the moment !
+          fix some bugs on them , they are not presentable at the moment
         </Alert>
       </Container>
     </Box>
