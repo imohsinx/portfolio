@@ -32,10 +32,26 @@ export default function Login() {
   const { logIn, googleSignIn } = useUserAuth();
 
   const handleSubmit = async () => {
+    // Check if email follows the standard email format
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email && !emailRegex.test(email)) {
+      setError("Email should be in the format 'example@example.com'");
+      return;
+    }
+
+    // Check if password is at least 8 characters long and contains at least one number, one lowercase letter, and one uppercase letter
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (password && !passwordRegex.test(password)) {
+      setError(
+        "Password should be at least 8 characters long and contain at least one number, one lowercase letter, and one uppercase letter"
+      );
+      return;
+    }
+
     setError("");
     try {
       await logIn(email, password);
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     }
@@ -45,7 +61,7 @@ export default function Login() {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.log(error.message);
     }

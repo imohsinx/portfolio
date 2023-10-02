@@ -26,11 +26,34 @@ export default function SignUP() {
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { signUp } = useUserAuth();
 
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    // Check if email follows the standard email format
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email && !emailRegex.test(email)) {
+      setError("Email should be in the format 'example@example.com'");
+      return;
+    }
+
+    // Check if password is at least 8 characters long and contains at least one number, one lowercase letter, and one uppercase letter
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (password && !passwordRegex.test(password)) {
+      setError(
+        "Password should be at least 8 characters long and contain at least one number, one lowercase letter, and one uppercase letter"
+      );
+      return;
+    }
+
+    // Check if password and confirmPassword are the same
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     e.preventDefault();
     setError("");
     try {
@@ -92,6 +115,33 @@ export default function SignUP() {
               </InputAdornment>
             }
             label="Enter Your Password"
+          />
+        </FormControl>
+
+        <FormControl>
+          <InputLabel htmlFor="outlined-adornment-confirm-password">
+            Confirm Your Password
+          </InputLabel>
+
+          <OutlinedInput
+            id="outlined-adornment-confirm-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            style={{ marginBottom: "20px" }}
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Confirm Your Password"
           />
         </FormControl>
         <Button

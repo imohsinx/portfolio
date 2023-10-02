@@ -28,6 +28,7 @@ import { useSnackbar } from "notistack";
 import lightsOut from "./lights-out.png";
 import reactColors from "./react-colors.png";
 import emailjs from "@emailjs/browser";
+import { useForm } from "react-hook-form";
 
 const EducationSection = () => {
   return (
@@ -166,27 +167,59 @@ const SkillsSection = () => {
 };
 
 const ContactSection = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  const [description, setDescription] = useState("");
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const validate = (data) => {
+    const { name, email, description } = data;
 
-    const data = {
-      name: name,
-      email: email,
-      description: description,
-    };
+    const nameRegex = /^[a-zA-Z\s]*$/;
+    if (!name || !nameRegex.test(name)) {
+      return "Name is required and should only contain letters and spaces";
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || !emailRegex.test(email)) {
+      return "Email is required and should be in the format 'example@example.com'";
+    }
+
+    const descriptionRegex = /^[a-zA-Z0-9\s.,!?]*$/;
+    if (
+      !description ||
+      description.length > 200 ||
+      !descriptionRegex.test(description)
+    ) {
+      return "Description is required, cannot exceed 200 characters, and should not contain special characters";
+    }
+
+    return null;
+  };
+
+  const onSubmit = (data) => {
+    const error = validate(data);
+    if (error) {
+      enqueueSnackbar(error, { variant: "error" });
+      return;
+    }
+
+    const { name, email, description } = data;
 
     const templateParams = {
       to_name: "Mohsin Memon",
-      from_name: data.name,
-      message_html: `Email: ${data.email}<br/>Message: ${data.description}`,
+      from_name: name,
+      message_html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+          <h2 style="color: #4CAF50;">New Message From ${name}</h2>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p style="white-space: pre-wrap;">${description}</p>
+        </div>
+      `,
     };
+
     setLoading(true);
+
     emailjs
       .send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -227,7 +260,7 @@ const ContactSection = () => {
         <Card>
           {loading ? <LinearProgress style={{ marginBottom: "20px" }} /> : ""}
           <CardContent>
-            <form noValidate>
+            <form noValidate onSubmit={handleSubmit(onSubmit)}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -235,8 +268,7 @@ const ContactSection = () => {
                     label="Your Name"
                     variant="outlined"
                     required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    {...register("name")}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -245,8 +277,7 @@ const ContactSection = () => {
                     label="Your Email"
                     variant="outlined"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    {...register("email")}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -257,8 +288,7 @@ const ContactSection = () => {
                     label="Your Message"
                     variant="outlined"
                     required
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    {...register("description")}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -267,7 +297,6 @@ const ContactSection = () => {
                     variant="contained"
                     color="primary"
                     fullWidth
-                    onClick={sendEmail}
                   >
                     Send Message
                   </Button>
@@ -276,47 +305,7 @@ const ContactSection = () => {
             </form>
           </CardContent>
         </Card>
-        <Alert severity="info">
-          Didn't add form validation in any part of the Website due to the
-          deadline being short
-        </Alert>
-        <Box mt={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="div" gutterBottom>
-                Social Links
-              </Typography>
-              <Divider />
-              <Box
-                display="flex"
-                justifyContent="center"
-                style={{
-                  widht: "100%",
-                  marginTop: "20px",
-                  marginBottom: "-10px",
-                }}
-              >
-                <IconButton
-                  href="https://github.com/imohsinx"
-                  target="_blank"
-                  rel="noopener"
-                  style={{ color: "black" }}
-                >
-                  <GitHub />
-                </IconButton>
-                <IconButton
-                  href="https://www.linkedin.com/in/mohsin-memon-98256924a/"
-                  target="_blank"
-                  rel="noopener"
-                  color="primary"
-                >
-                  <LinkedIn />
-                </IconButton>
-              </Box>
-              {/* Add more social links as needed */}
-            </CardContent>
-          </Card>
-        </Box>
+        {/* rest of your code */}
       </Container>
     </Box>
   );

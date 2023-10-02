@@ -125,6 +125,23 @@ export default function ProfileDialog({ user, open, setOpen }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if name only contains letters and spaces
+    const nameRegex = /^[a-zA-Z\s]*$/;
+    if (name && !nameRegex.test(name)) {
+      enqueueSnackbar("Name should only contain letters and spaces", {
+        variant: "error",
+      });
+      return;
+    }
+
+    // Check if phone is a valid phone number
+    const phoneRegex = /^\d{10}$/;
+    if (phone && !phoneRegex.test(phone)) {
+      enqueueSnackbar("Phone should be a valid 10-digit number", {
+        variant: "error",
+      });
+      return;
+    }
 
     setLoading(true);
 
