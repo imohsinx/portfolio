@@ -27,6 +27,7 @@ import {
   VisibilityOff,
 } from "@mui/icons-material";
 import { useSnackbar } from "notistack";
+import GoogleButton from "react-google-button";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -174,14 +175,15 @@ export default function Login() {
         >
           LOGIN
         </Button>
-        <Button
-          variant="outlined"
-          style={{ marginBottom: "20px" }}
-          startIcon={<Google />}
+
+        <GoogleButton
           onClick={handleGoogleSignIn}
-        >
-          SIGN-IN WITH GOOGLE
-        </Button>
+          style={{
+            marginBottom: "20px",
+            width: "100%",
+            borderRadius: "3px",
+          }}
+        />
 
         <Divider style={{ marginBottom: "30px" }}>
           <Chip label="Don't Have An Account ?" />

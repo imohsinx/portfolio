@@ -274,10 +274,10 @@ export default function ProfileDialog({ user, open, setOpen }) {
       </div>
 
       <DialogActions>
-        <Button onClick={handleSubmit} variant="outlined">
+        <Button onClick={handleSubmit} variant="contained">
           Save Details
         </Button>
-        <Button variant="outlined" color="secondary" onClick={handleCancel}>
+        <Button variant="outlined" onClick={handleCancel}>
           Cancel
         </Button>
       </DialogActions>

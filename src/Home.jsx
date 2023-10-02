@@ -54,7 +54,10 @@ export default function Home() {
       <AppBar
         position="fixed"
         color="inherit"
-        style={{ borderBottom: "1px solid #ddd", boxShadow: "none" }}
+        style={{
+          borderBottom: "1px solid #ddd",
+          boxShadow: "none",
+        }}
       >
         <Toolbar>
           <img

@@ -6,6 +6,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Chip,
   Container,
   Divider,
   Grid,
@@ -33,16 +34,22 @@ import { useForm } from "react-hook-form";
 const EducationSection = () => {
   return (
     <Box id="education" py={8} bgcolor="#f5f5f5">
+      <Divider>
+        <Chip
+          label="Education"
+          variant="outlined"
+          style={{
+            marginBottom: "50px",
+            marginTop: "30px",
+            fontSize: "34px",
+            width: "100%",
+            heigh: "100%",
+            padding: "40px",
+          }}
+        />
+      </Divider>
+
       <Container>
-        <Typography
-          variant="h4"
-          component="h2"
-          align="center"
-          gutterBottom
-          style={{ marginBottom: "30px", marginTop: "30px" }}
-        >
-          Education
-        </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <Paper elevation={3} p={3} style={{ padding: "30px" }}>
@@ -126,16 +133,21 @@ const skillsData = [
 const SkillsSection = () => {
   return (
     <Box id="skills" py={8} bgcolor="#f5f5f5">
+      <Divider>
+        <Chip
+          label="Skills"
+          variant="outlined"
+          style={{
+            marginBottom: "50px",
+            marginTop: "30px",
+            fontSize: "34px",
+            width: "100%",
+            heigh: "100%",
+            padding: "40px",
+          }}
+        />
+      </Divider>
       <Container>
-        <Typography
-          variant="h4"
-          component="h2"
-          align="center"
-          gutterBottom
-          style={{ marginBottom: "30px" }}
-        >
-          Skills
-        </Typography>
         <Grid container spacing={2}>
           {skillsData.map((skill, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
@@ -247,16 +259,21 @@ const ContactSection = () => {
 
   return (
     <Box id="contact" py={8} bgcolor="#f5f5f5">
+      <Divider>
+        <Chip
+          label="Contact Form"
+          variant="outlined"
+          style={{
+            marginBottom: "50px",
+            marginTop: "30px",
+            fontSize: "34px",
+            width: "100%",
+            heigh: "100%",
+            padding: "40px",
+          }}
+        />
+      </Divider>
       <Container maxWidth="md">
-        <Typography
-          variant="h4"
-          component="h2"
-          align="center"
-          gutterBottom
-          style={{ marginBottom: "30px" }}
-        >
-          Contact Form
-        </Typography>
         <Card>
           {loading ? <LinearProgress style={{ marginBottom: "20px" }} /> : ""}
           <CardContent>
@@ -338,7 +355,7 @@ const ContactSection = () => {
                   href="https://www.linkedin.com/in/mohsin-memon-98256924a/"
                   target="_blank"
                   rel="noopener"
-                  color="primary"
+                  style={{ color: "#0177B5" }}
                 >
                   <LinkedIn />
                 </IconButton>
@@ -374,16 +391,21 @@ const projectsData = [
 const ProjectsSection = () => {
   return (
     <Box id="projects" py={8} bgcolor="#f5f5f5">
+      <Divider>
+        <Chip
+          label="Projects"
+          variant="outlined"
+          style={{
+            marginBottom: "50px",
+            marginTop: "30px",
+            fontSize: "34px",
+            width: "100%",
+            heigh: "100%",
+            padding: "40px",
+          }}
+        />
+      </Divider>
       <Container>
-        <Typography
-          variant="h4"
-          component="h2"
-          align="center"
-          gutterBottom
-          style={{ marginBottom: "30px" }}
-        >
-          Projects
-        </Typography>
         <Grid container spacing={3}>
           {projectsData.map((project, index) => (
             <Grid item xs={12} sm={6} key={index}>
@@ -435,11 +457,8 @@ function Resume() {
   return (
     <div>
       <EducationSection />
-      <Divider />
       <SkillsSection />
-      <Divider />
       <ProjectsSection />
-      <Divider />
       <ContactSection />
     </div>
   );
