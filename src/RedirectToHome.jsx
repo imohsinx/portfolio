@@ -1,14 +1,21 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "./UserAuthContext";
 
 const RedirectToHome = ({ children }) => {
   const { user } = useUserAuth();
-  if (user) {
-    return <Navigate to="/home" />;
-  } else {
-    return children;
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user !== null) {
+      // Navigate to some other page
+      setTimeout(() => {
+        navigate("/home");
+      }, 500);
+    }
+  }, [user]);
+
+  return children;
 };
 
 export default RedirectToHome;
